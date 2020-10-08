@@ -1,5 +1,6 @@
 import os.path
-
+import numpy as np
+import torch
 from transformers import BertTokenizer
 from global_vars import BERT, BERT_CHINESE
 
@@ -15,7 +16,12 @@ def bert_tokenize(corpus):
 
 def padding(corpus, padding_idx=0):
     max_l = max(map(len, corpus))
-    return [sen+[padding_idx]*(max_l-len(sen)) for sen in corpus]
+    ids = [sen+[padding_idx]*(max_l-len(sen)) for sen in corpus]
+    
+    ids = np.array(ids)
+    mask = (ids != padding_idx).astype(int)
+
+    return ids, mask
 
 if __name__ == "__main__":
     corpus = ["测试中的依据", "呵呵apple"]
