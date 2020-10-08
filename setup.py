@@ -15,6 +15,7 @@ setup(name='fastdev',
       author_email='jasper.wang530@gmail.com',
       long_description=long_description,
       long_description_content_type='text/markdown',
+      download_url='https://github.com/Jasper530/fastdev/archive/0.0.1.tar.gz',
       install_requires=[
           'numpy',
           'matplotlib',
